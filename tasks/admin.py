@@ -5,6 +5,6 @@ from .models import Task
 
 @admin.register(Task)
 class TaskAdmin(admin.ModelAdmin):
-    list_display = ("title", "status", "priority", "due_date", "created_at")
-    list_filter = ("status", "priority")
+    list_display = ("title", "completed", "created_at")
+    list_filter = ("completed",)
     search_fields = ("title", "description")

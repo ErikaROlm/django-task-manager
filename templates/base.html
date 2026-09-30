@@ -50,7 +50,7 @@
             <span class="brand-mark"><span></span><span></span><span></span></span>
             <span>focusboard</span>
           </div>
-          <div class="topbar-date">{{ today|date:"l, F j" }}</div>
+          <div class="topbar-date">{% now "l, F j" %}</div>
           <a class="topbar-add" href="{% url 'task_create' %}" aria-label="Create a new task">
             <span>＋</span> Add task
           </a>

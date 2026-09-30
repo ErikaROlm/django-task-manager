@@ -31,7 +31,7 @@ A Django task manager for capturing, prioritizing, and completing personal work.
 
 ## Product
 
-Focusboard provides a personal task list with progress summary, search, status and priority filters, due-date awareness, and quick edit/complete/delete actions.
+Focusboard provides a personal task list with a progress summary, search, open/completed filters, and quick edit/complete/delete actions.
 
 ## User preferences
 

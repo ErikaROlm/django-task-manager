@@ -5,35 +5,35 @@
 {% block content %}
   <section class="page-header">
     <div>
-      <p class="eyebrow">{{ today|date:"l" }} rhythm</p>
-      <h1>Good morning<span class="accent-dot">.</span></h1>
-      <p class="page-subtitle">Here’s the shape of your day. Keep moving one clear step at a time.</p>
+      <p class="eyebrow">Your workspace</p>
+      <h1>Your tasks<span class="accent-dot">.</span></h1>
+      <p class="page-subtitle">Keep the important things visible and move through them one step at a time.</p>
     </div>
     <a class="button button-primary" href="{% url 'task_create' %}"><span>＋</span> New task</a>
   </section>
 
   <section class="stat-grid" aria-label="Task overview">
     <div class="stat-card stat-card-main">
-      <div class="stat-label">Open tasks</div>
+      <div class="stat-label">All tasks</div>
+      <div class="stat-value">{{ total_count }}</div>
+      <div class="stat-meta"><span class="stat-line"></span> Everything in one place</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Open</div>
       <div class="stat-value">{{ open_count }}</div>
-      <div class="stat-meta"><span class="stat-line"></span> Keep the momentum</div>
+      <div class="stat-meta">Ready for your attention</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Completed</div>
       <div class="stat-value">{{ completed_count }}</div>
       <div class="stat-meta stat-meta-green">Nice work so far</div>
     </div>
-    <div class="stat-card">
-      <div class="stat-label">Overdue</div>
-      <div class="stat-value {% if overdue_count %}stat-value-warn{% endif %}">{{ overdue_count }}</div>
-      <div class="stat-meta">Needs your attention</div>
-    </div>
   </section>
 
   <section class="tasks-section">
     <div class="section-heading">
       <div>
-        <h2>Your task list</h2>
+        <h2>Task list</h2>
         <span class="task-count">{{ total_count }} total</span>
       </div>
       <form class="search-form" method="get">
@@ -41,50 +41,36 @@
         <span class="search-icon">⌕</span>
         <input id="task-search" type="search" name="q" value="{{ query }}" placeholder="Search tasks..." />
         {% if active_status != "all" %}<input type="hidden" name="status" value="{{ active_status }}" />{% endif %}
-        {% if active_priority != "all" %}<input type="hidden" name="priority" value="{{ active_priority }}" />{% endif %}
       </form>
     </div>
 
     <div class="filter-row">
       <div class="filter-group">
-        <a class="filter-chip {% if active_status == 'all' %}selected{% endif %}" href="?{% if query %}q={{ query|urlencode }}{% endif %}{% if active_priority != 'all' %}&priority={{ active_priority }}{% endif %}">All</a>
-        <a class="filter-chip {% if active_status == 'todo' %}selected{% endif %}" href="?status=todo{% if query %}&q={{ query|urlencode }}{% endif %}">To do</a>
-        <a class="filter-chip {% if active_status == 'in_progress' %}selected{% endif %}" href="?status=in_progress{% if query %}&q={{ query|urlencode }}{% endif %}">In progress</a>
-        <a class="filter-chip {% if active_status == 'done' %}selected{% endif %}" href="?status=done{% if query %}&q={{ query|urlencode }}{% endif %}">Completed</a>
-      </div>
-      <div class="filter-group priority-filters">
-        <span class="filter-label">Priority</span>
-        <a class="filter-chip filter-chip-small {% if active_priority == 'all' %}selected{% endif %}" href="?{% if active_status != 'all' %}status={{ active_status }}&{% endif %}{% if query %}q={{ query|urlencode }}&{% endif %}">All</a>
-        {% for value, label in priority_choices %}
-          <a class="filter-chip filter-chip-small priority-{{ value }} {% if active_priority == value %}selected{% endif %}" href="?priority={{ value }}{% if active_status != 'all' %}&status={{ active_status }}{% endif %}{% if query %}&q={{ query|urlencode }}{% endif %}">{{ label }}</a>
-        {% endfor %}
+        <a class="filter-chip {% if active_status == 'all' %}selected{% endif %}" href="?{% if query %}q={{ query|urlencode }}{% endif %}">All</a>
+        <a class="filter-chip {% if active_status == 'open' %}selected{% endif %}" href="?status=open{% if query %}&q={{ query|urlencode }}{% endif %}">Open</a>
+        <a class="filter-chip {% if active_status == 'completed' %}selected{% endif %}" href="?status=completed{% if query %}&q={{ query|urlencode }}{% endif %}">Completed</a>
       </div>
     </div>
 
     {% if tasks %}
       <div class="task-list">
         {% for task in tasks %}
-          <article class="task-card {% if task.status == 'done' %}is-complete{% endif %}">
+          <article class="task-card {% if task.completed %}is-complete{% endif %}">
             <form method="post" action="{% url 'task_toggle' task.pk %}" class="task-check-form">
               {% csrf_token %}
               <input type="hidden" name="next" value="{{ request.get_full_path }}" />
-              <button class="task-check" type="submit" aria-label="{% if task.status == 'done' %}Mark {{ task.title }} as open{% else %}Mark {{ task.title }} as completed{% endif %}">
+              <button class="task-check" type="submit" aria-label="{% if task.completed %}Mark {{ task.title }} as open{% else %}Mark {{ task.title }} as completed{% endif %}">
                 <span></span>
               </button>
             </form>
             <div class="task-main">
               <div class="task-title-row">
                 <h3>{{ task.title }}</h3>
-                <span class="priority-pill priority-{{ task.priority }}">{{ task.get_priority_display }}</span>
               </div>
               {% if task.description %}<p class="task-description">{{ task.description }}</p>{% endif %}
               <div class="task-meta">
-                {% if task.due_date %}
-                  <span class="{% if task.is_overdue %}meta-overdue{% endif %}"><span class="meta-icon">◷</span> {% if task.is_overdue %}Overdue · {% endif %}{{ task.due_date|date:"M j, Y" }}</span>
-                {% else %}
-                  <span><span class="meta-icon">◷</span> No due date</span>
-                {% endif %}
-                <span class="status-label status-{{ task.status }}">{{ task.get_status_display }}</span>
+                <span><span class="meta-icon">◷</span> Added {{ task.created_at|date:"M j, Y" }}</span>
+                <span class="status-label">{% if task.completed %}Completed{% else %}Open{% endif %}</span>
               </div>
             </div>
             <div class="task-actions">
@@ -101,7 +87,7 @@
     {% else %}
       <div class="empty-state">
         <div class="empty-mark"><span></span><span></span><span></span></div>
-        {% if query or active_status != "all" or active_priority != "all" %}
+        {% if query or active_status != "all" %}
           <h3>No tasks match those filters</h3>
           <p>Try another search or clear the filters to see more of your list.</p>
           <a class="button button-secondary" href="{% url 'task_list' %}">Clear filters</a>

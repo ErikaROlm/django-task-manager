@@ -9,7 +9,8 @@ SECRET_KEY = os.environ.get(
     "django-insecure-task-manager-development-key",
 )
 DEBUG = os.environ.get("DEBUG", "1") != "0"
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['http://replit.dev']
 
 INSTALLED_APPS = [
     "django.contrib.admin",
