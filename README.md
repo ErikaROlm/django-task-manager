@@ -1,29 +1,37 @@
-# Focusboard - Gestor de Tareas Personal
+# 🚀 Focusboard - Gestor de Tareas Personal
 
-Un gestor de tareas hecho en Django para hacer más fácil y placentero organizar el día a día. La idea nació de algo simple: todos escribimos tareas en un papel, pero ¿y si las pudiéramos ver, organizar y cumplir en un solo lugar?
+### ✨ Tu mente en orden, tu vida en foco.
 
-### ¿Por qué hice este proyecto?
+> **🔗 PROBÁ LA APP EN VIVO AQUÍ: https://task-manager--ErikaROlm.replit.app**
 
-Quería pasar de la idea a algo que realmente funcione. Al principio me trababa hasta que aprendí a pedir ayuda, a guiar a la herramienta y a revisar que el código hiciera lo que yo realmente quería.
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Click_Aquí-black?style=for-the-badge)](https://task-manager--ErikaROlm.replit.app)
 
-Mi objetivo es que la gente pueda plasmar sus tareas y llegar a cumplirlas, no solo listarlas.
+---
 
-### Funcionalidades
+### 📖 ¿Por qué hice este proyecto?
 
-- Registro y Login de usuarios
-- Crear, editar y eliminar tareas
-- Cada usuario ve solo sus propias tareas
-- Organización por estados
+La gestión de tareas puede ser abrumadora. Creé Focusboard para tener un lugar simple, rápido y hermoso donde volcar todo lo que tengo que hacer, sin distracciones.
 
-### Lo que aprendí
+Mi objetivo es que puedas planear tu día en segundos y cumplirlo, sin perder el foco.
 
-Lo más difícil fue pasar de la idea a que funcione. Entender el flujo de Django, la autenticación y conectar Replit con GitHub. Aprendí a no quedarme trabada y a buscar soluciones.
+### ✨ Funcionalidades
 
-### Mi próxima idea - Módulo de Logros
+- ✅ **Agregar y Lograr Tareas:** Crea tareas en un click
+- ✏️ **Crear, editar y eliminar tareas**
+- 🎯 **Categorizar con etiquetas y prioridades**
+- 📊 **Tablero de Enfoque:** Ve solo lo importante
+- 📱 **Diseño Minimalista:** Inspirado en Notion / Linear, 100% responsive
 
-Mi próxima gran idea es agregar un Módulo de Logros: que cada tarea completada sume un logro y una recompensa simbólica (ej: $5.000 por logro) que se vaya acumulando. Que el usuario vea su progreso real.
+### 🛠️ Tecnologías
 
-### Tecnologías
-Python, Django, SQLite, HTML/CSS, Replit, GitHub
+- Python, Django, HTML5, CSS3, Tailwind CSS
+- SQLite, Replit Autoscale
+- Git & GitHub
 
-### Cómo correrlo
+### 🚀 Cómo correrlo local
+
+```bash
+git clone https://github.com/TU-USUARIO/task-manager.git
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
