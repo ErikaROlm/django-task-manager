@@ -15,14 +15,8 @@ localPort = 8000
 run = "cd ../.. && python manage.py runserver 0.0.0.0:8000"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/task-manager", "run", "build" ]
-serve = "static"
-publicDir = "artifacts/task-manager/dist/public"
-
-[[services.production.rewrites]]
-from = "/*"
-to = "/index.html"
+build = [ "python", "../../manage.py", "check" ]
+run = "cd ../.. && gunicorn --bind 0.0.0.0:$PORT task_manager.wsgi:application"
 
 [services.env]
-PORT = "8000"
 BASE_PATH = "/"
