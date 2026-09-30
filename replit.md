@@ -1,44 +1,45 @@
-# [Project name]
+# Focusboard
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+A Django task manager for capturing, prioritizing, and completing personal work.
 
 ## Run & Operate
 
-- `pnpm --filter @workspace/api-server run dev` — run the API server (port 5000)
-- `pnpm run typecheck` — full typecheck across all packages
-- `pnpm run build` — typecheck + build all packages
-- `pnpm --filter @workspace/api-spec run codegen` — regenerate API hooks and Zod schemas from the OpenAPI spec
-- `pnpm --filter @workspace/db run push` — push DB schema changes (dev only)
-- Required env: `DATABASE_URL` — Postgres connection string
+- `python manage.py migrate` — apply Django migrations
+- `python manage.py runserver` — run the task manager locally
+- `python manage.py test` — run the task manager test suite
+- `python manage.py check` — validate the Django configuration
 
 ## Stack
 
-- pnpm workspaces, Node.js 24, TypeScript 5.9
-- API: Express 5
-- DB: PostgreSQL + Drizzle ORM
-- Validation: Zod (`zod/v4`), `drizzle-zod`
-- API codegen: Orval (from OpenAPI spec)
-- Build: esbuild (CJS bundle)
+- Django 5.2 on Python 3.11
+- Server-rendered Django templates
+- SQLite for local persistence
+- CSS written in `static/css/style.css`
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `task_manager/` — Django project settings and root URLs
+- `tasks/` — task model, forms, views, admin, and migrations
+- `templates/` — page templates
+- `static/css/style.css` — visual system and responsive layout
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- Use SQLite so the starter repository runs without provisioning an external service.
+- Use Django templates and standard POST forms for CRUD actions, keeping persistence server-side and easy to extend.
+- Keep the first version single-user and account-free; authentication can be added when the product needs shared workspaces.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+Focusboard provides a personal task list with progress summary, search, status and priority filters, due-date awareness, and quick edit/complete/delete actions.
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+No additional user preferences recorded.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- Run `python manage.py migrate` before the first launch.
 
 ## Pointers
 

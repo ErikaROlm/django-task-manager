@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A focused task manager for keeping your day moving." />
+    <title>{% block title %}Focusboard{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="{% url 'task_list' %}">
+          <span class="brand-mark"><span></span><span></span><span></span></span>
+          <span>focusboard</span>
+        </a>
+        <div class="sidebar-section">
+          <p class="eyebrow">Workspace</p>
+          <nav class="primary-nav" aria-label="Primary navigation">
+            <a class="nav-item active" href="{% url 'task_list' %}">
+              <span class="nav-icon">▦</span>
+              <span>My tasks</span>
+            </a>
+            <a class="nav-item" href="{% url 'task_create' %}">
+              <span class="nav-icon">＋</span>
+              <span>New task</span>
+            </a>
+          </nav>
+        </div>
+        <div class="sidebar-note">
+          <span class="note-dot"></span>
+          <div>
+            <strong>Make room for focus.</strong>
+            <p>Small steps, clearly seen.</p>
+          </div>
+        </div>
+        <div class="sidebar-footer">Personal workspace</div>
+      </aside>
+
+      <main class="main-content">
+        <header class="topbar">
+          <div class="mobile-brand">
+            <span class="brand-mark"><span></span><span></span><span></span></span>
+            <span>focusboard</span>
+          </div>
+          <div class="topbar-date">{{ today|date:"l, F j" }}</div>
+          <a class="topbar-add" href="{% url 'task_create' %}" aria-label="Create a new task">
+            <span>＋</span> Add task
+          </a>
+        </header>
+
+        {% if messages %}
+          <div class="flash-stack" aria-live="polite">
+            {% for message in messages %}
+              <div class="flash-message">{{ message }}<span>✓</span></div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </body>
+</html>
