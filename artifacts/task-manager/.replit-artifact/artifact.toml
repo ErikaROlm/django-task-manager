@@ -15,7 +15,7 @@ localPort = 8000
 run = "cd ../.. && python manage.py runserver 0.0.0.0:8000"
 
 [services.production]
-build = [ "python", "../../manage.py", "check" ]
+build = [ "python", "manage.py", "check" ]
 run = "cd ../.. && gunicorn --bind 0.0.0.0:$PORT task_manager.wsgi:application"
 
 [services.env]
