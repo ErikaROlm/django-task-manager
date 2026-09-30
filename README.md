@@ -1,21 +1,29 @@
-# Focusboard — Django Task Manager
+# Focusboard - Gestor de Tareas Personal
 
-Focusboard is a small Django task manager built from the `Task_manager` starter repository. It gives you a focused personal workspace for capturing tasks, tracking progress, searching, filtering, and cleaning up completed work.
+Un gestor de tareas hecho en Django para hacer más fácil y placentero organizar el día a día. La idea nació de algo simple: todos escribimos tareas en un papel, pero ¿y si las pudiéramos ver, organizar y cumplir en un solo lugar?
 
-## Run locally
+### ¿Por qué hice este proyecto?
 
-```bash
-python manage.py migrate
-python manage.py runserver
-```
+Quería pasar de la idea a algo que realmente funcione. Al principio me trababa hasta que aprendí a pedir ayuda, a guiar a la herramienta y a revisar que el código hiciera lo que yo realmente quería.
 
-The app uses SQLite for local persistence and does not require a separate database service.
+Mi objetivo es que la gente pueda plasmar sus tareas y llegar a cumplirlas, no solo listarlas.
 
-## Features
+### Funcionalidades
 
-- Create and edit tasks with titles and descriptions
-- Toggle tasks between open and completed
-- Search by title or description
-- Filter by open or completed state
-- Lightweight progress summary
-- Django admin at `/admin/`
+- Registro y Login de usuarios
+- Crear, editar y eliminar tareas
+- Cada usuario ve solo sus propias tareas
+- Organización por estados
+
+### Lo que aprendí
+
+Lo más difícil fue pasar de la idea a que funcione. Entender el flujo de Django, la autenticación y conectar Replit con GitHub. Aprendí a no quedarme trabada y a buscar soluciones.
+
+### Mi próxima idea - Módulo de Logros
+
+Mi próxima gran idea es agregar un Módulo de Logros: que cada tarea completada sume un logro y una recompensa simbólica (ej: $5.000 por logro) que se vaya acumulando. Que el usuario vea su progreso real.
+
+### Tecnologías
+Python, Django, SQLite, HTML/CSS, Replit, GitHub
+
+### Cómo correrlo
