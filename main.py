@@ -1,6 +1,4 @@
-def main():
-    print("Hello from repl-nix-workspace!")
+import os
 
-
-if __name__ == "__main__":
-    main()
+os.system("python manage.py migrate")
+os.system("python manage.py runserver 0.0.0.0:8000")

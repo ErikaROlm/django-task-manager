@@ -1,20 +1,21 @@
 import os
 from pathlib import Path
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.environ.get(
-    "DJANGO_SECRET_KEY",
-    "django-insecure-task-manager-development-key",
-)
-DEBUG = os.environ.get("DEBUG", "1") != "0"
-ALLOWED_HOSTS = ['*']
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-secret-key-for-task-manager-development-key")
+
+DEBUG = os.environ.get("DEBUG", "1") == "1"
+
+ALLOWED_HOSTS = ["*"]
+
 CSRF_TRUSTED_ORIGINS = [
-    'https://*.replit.dev',
-    'https://*.repl.co',
-    'https://*.replit.app',
-]
+        "https://*.replit.dev",
+        "https://*.repl.co",
+        "https://*.replit.app",
+        "https://*.pike.replit.dev",
+        "https://*.reed.replit.dev",
+    ]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -63,11 +64,13 @@ DATABASES = {
 }
 
 AUTH_PASSWORD_VALIDATORS = []
+
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "America/Argentina/Buenos_Aires"
+TIME_ZONE = "America/Buenos_Aires"
 USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
