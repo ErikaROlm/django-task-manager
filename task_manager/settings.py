@@ -10,7 +10,11 @@ SECRET_KEY = os.environ.get(
 )
 DEBUG = os.environ.get("DEBUG", "1") != "0"
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://replit.dev']
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.replit.dev',
+    'https://*.repl.co',
+    'https://*.replit.app',
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
